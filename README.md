@@ -2,6 +2,9 @@
 
 Esta es una aplicación móvil diseñada para consultar el estado del tiempo. Permite obtener información meteorológica como temperatura, humedad y descripción general del clima. La aplicación está desarrollada con **React Native** y sigue una adaptación de la **Clean Architecture**.
 
+## **Restricciones**
+- Este proyecto utiliza `ToastAndroid` para mostrar mensajes de error en dispositivos Android. Ten en cuenta que los `Toast` solo funcionarán en plataformas Android. Si deseas mostrar mensajes de tipo Toast en iOS o en otras plataformas, necesitarás implementar una alternativa o usar una librería diferente.
+
 ---
 
 ## **Arquitectura**
