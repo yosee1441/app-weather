@@ -7,7 +7,7 @@ import axios, {
 
 import { httpReponseAdapter } from '@/adapters';
 import { WEATHER_CONFIG } from '@/constants';
-import { isInRange, getErrorMessage, showToast } from '@/utils';
+import { isInRange, getErrorMessage, showToastError } from '@/utils';
 
 class httpService {
   private readonly axiosInstance: AxiosInstance;
@@ -36,10 +36,10 @@ class httpService {
       (error: AxiosError) => {
         const status = error.response?.status || 500;
         if (isInRange(status, 500, 599)) {
-          showToast('Ocurrió un error inesperado.');
+          showToastError('Ocurrió un error inesperado.');
         } else {
-          const code = error.response?.data?.cod || 500;
-          showToast(getErrorMessage(code));
+          const code = (error.response?.data as Record<'cod', string>)?.cod || '500';
+          showToastError(getErrorMessage(code));
         }
 
         return Promise.reject(error);

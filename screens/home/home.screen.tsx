@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Toast from 'react-native-root-toast';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { findOneByCity } from '@/redux/weather/weather.actions';
@@ -26,9 +25,6 @@ export default function HomeScreen() {
 
   useEffect(() => {
     dispatch(findOneByCity(CITY_NAME_DEFAULT));
-    Toast.show('Request failed to send.', {
-      duration: Toast.durations.LONG,
-    });
   }, []);
 
   const handleSearch = (city: string) => {

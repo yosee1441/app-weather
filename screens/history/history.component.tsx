@@ -11,8 +11,10 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { resetHistory } from '@/redux/history/history.slice';
 import { findAll } from '@/redux/history';
 import { useTheme } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const HistoryScreen = () => {
+  const insets = useSafeAreaInsets();
   const { colors } = useTheme();
   const dispatch = useAppDispatch();
   const searches = useAppSelector((state) => state.history.searches);
@@ -38,10 +40,18 @@ const HistoryScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { paddingTop: insets.top, paddingBottom: insets.bottom },
+      ]}
+    >
       <Text style={[styles.title, { color: colors.text }]}>
         Historial de búsquedas
       </Text>
+      <View style={{ height: 20 }} />
+      <Button title="Borrar historial" onPress={handleClearHistory} />
+      <View style={{ height: 20 }} />
       <FlatList
         data={searches}
         renderItem={({ item }) => (
@@ -54,14 +64,14 @@ const HistoryScreen = () => {
           </Text>
         }
       />
-      <Button title="Borrar historial" onPress={handleClearHistory} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    flex: 1,
+    padding: 12,
   },
   title: {
     fontSize: 24,
