@@ -1,0 +1,46 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Expo
+.expo/
+.expo-shared/
+
+# Android
+android/.gradle/
+android/app/build/
+android/app/BUCK
+android/app/.idea/
+android/app/.idea/*
+android/.idea/*
+android/*.iml
+android/.idea/caches/
+android/.idea/libraries/
+android/.idea/modules.xml
+android/.idea/workspace.xml
+android/.idea/gradle.xml
+android/local.properties
+android/gradle.properties
+android/build/
+android/app/*.iml
+android/app/proguard-rules.pro
+android/gradlew
+android/gradlew.bat
+android/gradle/
+android/.settings/
+android/settings.gradle
+
+# iOS
+ios/Pods/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/
+ios/*.xcodeproj/xcuserdata/
+ios/Podfile.lock
+ios/build/
+ios/DerivedData/
+ios/*.xcodeproj/project.pbxproj
+ios/*.
+
+.env
