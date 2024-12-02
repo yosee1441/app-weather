@@ -1,46 +1,38 @@
-# Node.js dependencies
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Expo
 .expo/
-.expo-shared/
+dist/
+web-build/
+expo-env.d.ts
 
-# Android
-android/.gradle/
-android/app/build/
-android/app/BUCK
-android/app/.idea/
-android/app/.idea/*
-android/.idea/*
-android/*.iml
-android/.idea/caches/
-android/.idea/libraries/
-android/.idea/modules.xml
-android/.idea/workspace.xml
-android/.idea/gradle.xml
-android/local.properties
-android/gradle.properties
-android/build/
-android/app/*.iml
-android/app/proguard-rules.pro
-android/gradlew
-android/gradlew.bat
-android/gradle/
-android/.settings/
-android/settings.gradle
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
 
-# iOS
-ios/Pods/
-ios/*.xcodeproj/xcuserdata/
-ios/*.xcodeproj/project.xcworkspace/
-ios/*.xcodeproj/xcuserdata/
-ios/Podfile.lock
-ios/build/
-ios/DerivedData/
-ios/*.xcodeproj/project.pbxproj
-ios/*.
+# Metro
+.metro-health-check*
 
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
 .env
+
+# typescript
+*.tsbuildinfo
+
+app-example
