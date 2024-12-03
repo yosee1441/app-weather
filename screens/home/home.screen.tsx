@@ -7,7 +7,7 @@ import { findOneByCity } from '@/redux/weather/weather.actions';
 import { save } from '@/redux/history';
 import { CITY_NAME_DEFAULT } from './utils/constants';
 import { Container } from '@/components';
-import { Search, Card, Autocomplete } from './components';
+import { Search, Card } from './components';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -17,21 +17,30 @@ export default function HomeScreen() {
   const error = useAppSelector((state) => state.weather.error);
   const history = useAppSelector((state) => state.history.searches);
 
-  useEffect(() => {
-    dispatch(findOneByCity(CITY_NAME_DEFAULT));
-  }, []);
-
-  const handleSearch = (city: string) => {
+  const handleCitySearch = (city: string, navigate: boolean = false) => {
     dispatch(findOneByCity(city))
       .unwrap()
       .then(() => {
         !history.includes(city) && dispatch(save([...history, city]));
+      })
+      .then(() => {
+        if (navigate) {
+          router.push('/about');
+        }
       });
+  };
+
+  const handleSearch = (city: string) => {
+    handleCitySearch(city);
   };
 
   const handleCardClick = () => {
     router.push('/about');
   };
+
+  useEffect(() => {
+    dispatch(findOneByCity(CITY_NAME_DEFAULT));
+  }, []);
 
   return (
     <Container>
@@ -39,14 +48,7 @@ export default function HomeScreen() {
         onSearch={handleSearch}
         loading={loading}
         onItemPress={(city) => {
-          dispatch(findOneByCity(city))
-            .unwrap()
-            .then(() => {
-              !history.includes(city) && dispatch(save([...history, city]));
-            })
-            .then(() => {
-              router.push('/about');
-            });
+          handleCitySearch(city, true);
         }}
       />
       {loading ? (
