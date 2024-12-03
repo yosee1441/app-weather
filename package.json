@@ -52,10 +52,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@testing-library/react-native": "12.9.0",
     "@types/humps": "2.0.6",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.12",
-    "@types/react-test-renderer": "^18.3.0",
     "concurrently": "9.1.0",
     "connect-api-mocker": "1.11.0",
     "cors": "2.8.5",
@@ -72,7 +72,6 @@
     "jest-expo": "~52.0.2",
     "nodemon": "3.1.7",
     "prettier": "3.3.3",
-    "react-test-renderer": "18.3.1",
     "typescript": "^5.3.3"
   },
   "private": true
