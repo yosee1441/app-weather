@@ -9,3 +9,11 @@ export const findOneByCity = createAsyncThunk(
     return await service.findOneByCity(city);
   }
 );
+
+export const findAllCities = createAsyncThunk(
+  'weather/findAllCities',
+  async (city: string) => {
+    const service = new WeatherHttpService();
+    return await service.findAllCities(city);
+  }
+);

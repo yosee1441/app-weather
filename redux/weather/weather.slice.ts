@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { WeatherAPIResponse } from '@/screens/home/models';
-import { findOneByCity } from '@/redux/weather/weather.actions';
+import { WeatherAPIResponse, City } from '@/screens/home/models';
+import { findOneByCity, findAllCities } from '@/redux/weather/weather.actions';
 
 export const WeatherEmptyState: {
   data: WeatherAPIResponse | null;
+  cities: City[] | null;
   loading: boolean;
   error: string | null;
 } = {
@@ -32,6 +33,7 @@ export const WeatherEmptyState: {
     name: '',
     cod: 0,
   },
+  cities: [],
   loading: false,
   error: null,
 };
@@ -54,6 +56,12 @@ const weatherSlice = createSlice({
       })
       .addCase(findOneByCity.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(findAllCities.fulfilled, (state, action) => {
+        state.cities = action.payload;
+      })
+      .addCase(findAllCities.rejected, (state, action) => {
         state.error = action.payload as string;
       });
   },

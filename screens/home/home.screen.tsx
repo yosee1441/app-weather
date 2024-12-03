@@ -1,21 +1,15 @@
 import React, { useEffect } from 'react';
-import {
-  View,
-  ActivityIndicator,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { findOneByCity } from '@/redux/weather/weather.actions';
 import { save } from '@/redux/history';
-import { Search, Card } from './components';
 import { CITY_NAME_DEFAULT } from './utils/constants';
+import { Container } from '@/components';
+import { Search, Card, Autocomplete } from './components';
 
 export default function HomeScreen() {
-  const insets = useSafeAreaInsets();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const weather = useAppSelector((state) => state.weather.data);
@@ -40,13 +34,21 @@ export default function HomeScreen() {
   };
 
   return (
-    <View
-      style={[
-        styles.container,
-        { paddingTop: insets.top, paddingBottom: insets.bottom },
-      ]}
-    >
-      <Search onSearch={handleSearch} loading={loading} />
+    <Container>
+      <Search
+        onSearch={handleSearch}
+        loading={loading}
+        onItemPress={(city) => {
+          dispatch(findOneByCity(city))
+            .unwrap()
+            .then(() => {
+              !history.includes(city) && dispatch(save([...history, city]));
+            })
+            .then(() => {
+              router.push('/about');
+            });
+        }}
+      />
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : !error && weather ? (
@@ -60,13 +62,6 @@ export default function HomeScreen() {
           />
         </TouchableOpacity>
       ) : null}
-    </View>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 12,
-  },
-});

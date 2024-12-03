@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 
-import { Input } from '@/components';
+import { Autocomplete } from '@/screens/home/components';
 
 interface SearchProps {
   onSearch: (city: string) => void;
   loading: boolean;
+  onItemPress: (value: string) => void;
 }
 
-const Search: React.FC<SearchProps> = ({ onSearch, loading }) => {
+const Search: React.FC<SearchProps> = ({ onSearch, loading, onItemPress }) => {
   const [city, setCity] = useState('');
 
   const handleSearch = () => {
@@ -20,20 +21,29 @@ const Search: React.FC<SearchProps> = ({ onSearch, loading }) => {
 
   return (
     <View style={styles.container}>
-      <Input
-        placeholder="Ingresa la ciudad"
-        value={city}
-        onChangeText={setCity}
-      />
+      <View style={{ height: 4 }} />
+      <View style={styles.autocomplete}>
+        <Autocomplete
+          placeholder={'Buscar ciudad...'}
+          onItemPress={onItemPress}
+        />
+      </View>
+      <View style={{ height: 10 }} />
       <Button title="Buscar" onPress={handleSearch} disabled={loading} />
+      <View style={{ height: 10 }} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    marginVertical: 20,
+    display: 'flex',
+    position: 'relative',
+    zIndex: 10,
+  },
+  autocomplete: {
+    position: 'relative',
+    zIndex: 10,
   },
 });
 
