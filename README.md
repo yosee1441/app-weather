@@ -67,7 +67,12 @@ npm run web
 npm run start
 ```
 
-### **Test**
+### **Iniciar Expo probar con mocks**
+```code
+npm run start:proxy:mock:server
+```
+
+### **Ejecutar todos los test**
 ```code
 npm run test
 ```
