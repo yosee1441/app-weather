@@ -1,0 +1,84 @@
+{
+  "cali": {
+    "coord": {
+      "lon": -76.5225,
+      "lat": 3.4372
+    },
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "nubes",
+        "icon": "04d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 24.98,
+      "feels_like": 25.02,
+      "temp_min": 23.88,
+      "temp_max": 25.01,
+      "pressure": 1009,
+      "humidity": 57,
+      "sea_level": 1009,
+      "grnd_level": 869
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 0.45,
+      "deg": 340,
+      "gust": 1.34
+    },
+    "clouds": {
+      "all": 96
+    },
+    "dt": 1733256258,
+    "sys": {
+      "type": 2,
+      "id": 2097738,
+      "country": "CO",
+      "sunrise": 1733223499,
+      "sunset": 1733266457
+    },
+    "timezone": -18000,
+    "id": 3687925,
+    "name": "Santiago de Cali",
+    "cod": 200
+  },
+  "candelaria": [
+    {
+      "name": "Candelaria",
+      "lat": 28.3546715,
+      "lon": -16.3710091,
+      "country": "ES"
+    },
+    {
+      "name": "Candelaria",
+      "lat": 18.1860719,
+      "lon": -91.0431166,
+      "country": "MX",
+      "state": "Campeche"
+    },
+    {
+      "name": "Candelaria",
+      "lat": 13.9289015,
+      "lon": 121.4246794,
+      "country": "PH",
+      "state": "Quezon"
+    },
+    {
+      "name": "Candelaria",
+      "lat": 3.4090481,
+      "lon": -76.347379,
+      "country": "CO",
+      "state": "Valle del Cauca"
+    },
+    {
+      "name": "Candelária",
+      "lat": -29.668391,
+      "lon": -52.789495,
+      "country": "BR",
+      "state": "Rio Grande do Sul"
+    }
+  ]
+}

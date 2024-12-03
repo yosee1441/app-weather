@@ -6,7 +6,6 @@ import axios, {
 } from 'axios';
 
 import { httpReponseAdapter } from '@/adapters';
-import { WEATHER_CONFIG } from '@/constants';
 import { isInRange, getErrorMessage, showToastError } from '@/utils';
 
 class httpService {
@@ -17,7 +16,7 @@ class httpService {
     this.abortController = new AbortController();
 
     this.axiosInstance = axios.create({
-      baseURL: WEATHER_CONFIG.baseUrl,
+      baseURL: `${process.env.EXPO_PUBLIC_API_URL}`,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
