@@ -4,7 +4,7 @@ import { View, Button, StyleSheet } from 'react-native';
 import { Autocomplete } from '@/screens/home/components';
 
 interface SearchProps {
-  onSearch: (city: string) => void;
+  onSearch: (value: string) => void;
   loading: boolean;
   onItemPress: (value: string) => void;
 }
@@ -12,24 +12,21 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ onSearch, loading, onItemPress }) => {
   const [city, setCity] = useState('');
 
-  const handleSearch = () => {
-    if (city.trim()) {
-      onSearch(city);
-      setCity('');
-    }
-  };
-
   return (
     <View style={styles.container}>
-      <View style={{ height: 4 }} />
       <View style={styles.autocomplete}>
         <Autocomplete
+          onChangeText={(value) => setCity(value)}
           placeholder={'Buscar ciudad...'}
           onItemPress={onItemPress}
         />
       </View>
       <View style={{ height: 10 }} />
-      <Button title="Buscar" onPress={handleSearch} disabled={loading} />
+      <Button
+        title="Buscar"
+        onPress={() => city && onSearch(city.trim())}
+        disabled={loading}
+      />
       <View style={{ height: 10 }} />
     </View>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { useAutocompleteCities } from '@/screens/home/hooks';
@@ -7,6 +7,7 @@ import { Suggestions } from './components';
 
 interface AutocompleteProps {
   placeholder: string;
+  onChangeText: (value: string) => void;
   onItemPress: (value: string) => void;
   renderItem?: (item: any) => React.ReactNode;
 }
@@ -15,7 +16,9 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   placeholder,
   onItemPress,
   renderItem,
+  onChangeText,
 }) => {
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const { suggestions, loading, setQuery, query } = useAutocompleteCities();
 
   return (
@@ -23,15 +26,20 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
       <Input
         value={query}
         placeholder={placeholder}
-        onChangeText={(text) => setQuery(text)}
+        onChangeText={(text) => {
+          onChangeText(text);
+          setQuery(text);
+          setShowSuggestions(true);
+        }}
+        onSubmitEditing={() => setShowSuggestions(false)}
       />
-      {query.length > 0 && (
+      {showSuggestions && (
         <Suggestions
           loading={loading}
           options={suggestions}
-          onItemPress={(city: string) => {
-            onItemPress(city);
-            setQuery('');
+          onItemPress={(option: string) => {
+            onItemPress(option);
+            setShowSuggestions(false);
           }}
           renderItem={renderItem}
         />

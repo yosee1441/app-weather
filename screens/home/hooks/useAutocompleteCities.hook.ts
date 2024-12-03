@@ -26,7 +26,7 @@ const useAutocompleteCities = (timeout: number = 500, limit: number = 3) => {
     if (query) fetchSuggestions(query);
   }, [query, fetchSuggestions]);
 
-  return { suggestions, loading, fetchSuggestions, setQuery, query: query.trim() };
+  return { suggestions, loading, fetchSuggestions, setQuery, query };
 };
 
 export default useAutocompleteCities;
