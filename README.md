@@ -66,3 +66,8 @@ npm run web
 ```code
 npm run start
 ```
+
+### **Test**
+```code
+npm run test
+```
